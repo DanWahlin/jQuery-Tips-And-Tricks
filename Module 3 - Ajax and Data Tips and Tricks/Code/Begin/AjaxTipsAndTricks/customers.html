@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Customers</title>
+    <link href="Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="content-wrapper">
+        <a id="GetCustomers" href="#">Get Customers</a>
+        <a id="UpdateCustomer" href="#">Update Customer</a>
+        <a id="InsertCustomer" href="#">Insert Customer</a>
+        <a id="DeleteCustomer" href="#">Delete Customer</a>
+        <a id="GetCustomerOrders" href="#">Get Customer Orders</a>
+        <a id="GetCustomerJSONP" href="#">Get Customer via JSONP</a>
+
+        <br />
+        <h4>Customers:</h4>
+        <ul id="CustomersContainer"></ul>
+
+        <h5>Orders</h5>
+        <ul id="OrdersContainer"></ul>
+        <br />
+        <div id="OutputDiv"></div>
+    </div>
+
+    <script src="Scripts/jquery.min.js"></script>
+    <script src="Scripts/customersPage.js"></script>
+    <script src="Scripts/dataService.js"></script>
+    <script>
+        customersPage.init();
+    </script>
+</body>
+</html>

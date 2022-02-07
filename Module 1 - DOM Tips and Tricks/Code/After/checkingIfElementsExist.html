@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Checking if an Element Exists</title>
+    <style>
+        table {
+            width: 600px;
+        }
+        th {
+            text-align: left;
+        }
+        #container {
+            height: 500px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <button id="loadCustomersButton">Load Customers</button>
+    Time (millis): <span id="diff"></span>
+    <div id="container">
+        <table id="customersTable">
+            <tr>
+                <td>ID</td>
+                <th>Name</th>
+                <th>Address</th>            
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>New Customer?</th>
+            </tr>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="Scripts/jquery.js"></script>
+    <script>
+        //Don't recommend using this - just check the length directly as shown below
+        //jQuery.fn.exists = function () { return this.length > 0; }
+
+        $("#loadCustomersButton").click(function () {
+            var $tbody = $("#customersTable tbody");
+            //if (!$tbody.exists()) { 
+            if (!$tbody.length) {
+                $('#container').append('<table id="customersTable" />');
+            }
+            $tbody.html("");
+            var start = new Date();
+            var custs = getCustomers();
+            var html = "";
+            for (var i = 0; i < custs.length; i++) {
+                var cust = custs[i];
+                html += "<tr>" +
+                "<td>" + cust.id + "</td>" +
+                "<td>" + cust.name + "</td>" +
+                "<td>" + cust.address + "</td>" +
+                "<td>" + cust.city + "</td>" +
+                "<td>" + cust.state + "</td>" +
+                "<td>" + cust.zip + "</td>" +
+                "<td>" + cust.newCustomer + "</td></tr>";
+            }
+            $tbody.append(html);
+            var diff = new Date().getTime() - start.getTime();
+            $("#diff").html(diff);
+        });
+
+        function getCustomers() {
+            var custs = [];
+            for (var i = 0; i < 4000; i++) {
+                var cust = {
+                    id: i,
+                    name: "John Doe",
+                    address: "12345 Any St.",
+                    city: "Chandler",
+                    state: "Arizona",
+                    zip: 85225,
+                    newCustomer: true
+                };
+                custs.push(cust);
+            }
+            return custs;
+        }
+    </script>
+</body>
+</html>

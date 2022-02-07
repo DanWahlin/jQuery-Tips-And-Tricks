@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Using the $.type Method</title>
+    <style></style>
+</head>
+<body>
+    <script src="./ext/jquery/jquery.min.js"></script>
+    <script>
+        var jayQuery = {
+            element: { html: null },
+            html: function (value) {
+                if (value === undefined) {
+                    return this.element.html;
+                } else if (typeof value === "string") {
+                    this.element.html = value;
+                } else if (typeof value === "function") {
+                    this.element.html = value(this.element.html);
+                }
+            },
+            map: function (items, callback) {
+                var result = [];
+
+                if (typeof items === "array") {
+                    for (i = 0; i < items.length; i++) {
+                        result.push(callback(items[i], i));
+                    }
+                } else if (typeof items === "object") {
+                    for (i in items) {
+                        result.push(callback(items[i], i));
+                    }
+                }
+
+                return result;
+            }
+        };
+
+        console.log("html: " + jayQuery.html());
+        jayQuery.html("Hello");
+        console.log("html: " + jayQuery.html());
+        jayQuery.html(function (item) { return item + " World"; });
+        console.log("html: " + jayQuery.html());
+
+        // ..........
+
+        var person = { firstName: "Elijah", middleName: "Troy", lastName: "Manor" };
+        console.log(jayQuery.map(person, function (value, key) {
+            return value.charAt(0);
+        }));
+
+        var names = ["John", "Susan"];
+        names[5] = "Joe";
+        console.log(names);
+        console.log(jayQuery.map(names, function (item, index) {
+            return item ? item.charAt(0) : undefined;
+        }));
+    </script>
+</body>
+</html>

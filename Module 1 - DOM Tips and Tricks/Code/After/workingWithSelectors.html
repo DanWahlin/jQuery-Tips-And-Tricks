@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="Scripts/jquery.js"></script>
+    <script>
+        var $emailContainer;
+
+        $(document).ready(function () {
+            $emailContainer = $("#emailContainer");
+            $emailContainer
+                .attr("title", "Emails")
+                .click(function () {
+                    alert("Clicked container");
+                });
+
+            updatePanels($emailContainer);
+            updatePanels($("#ordersContainer"));
+
+        });
+
+        //function updatePanels($context) {
+        //    $("div.panel", $context).each(function (i) {
+        //        $(this).html("Panel " + i);
+        //    });
+        //}
+
+
+        function updatePanels($context) {
+            $context.find("div.panel").each(function (i) {
+                $(this).html("Panel " + i);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="emailContainer">
+        <div class="panel">
+            
+        </div>
+        <div class="panel">
+            
+        </div>
+    </div>
+    <div id="ordersContainer">
+        <div class="panel">
+            
+        </div>
+        <div class="panel">
+            
+        </div>
+    </div>
+
+</body>
+</html>

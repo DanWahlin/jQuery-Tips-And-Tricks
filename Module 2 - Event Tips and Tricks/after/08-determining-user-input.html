@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="./ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./ext/toastr/toastr.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>Determining User Input</title>
+</head>
+<body>
+    <form class="form-horizontal well">
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label" for="firstName">Name</label>
+                <div class="controls">
+                    <input id="name" type="text" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="profileImageUrl">Profile Image</label>
+                <div class="controls">
+                    <input id="profileImageUrl" type="text" class="input-xlarge" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <img id="profileImage" src="..." class="img-rounded" />
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <div id="output"></div>
+    <script src="./ext/jquery/jquery.min.js"></script>
+    <script src="./ext/toastr/toastr.min.js"></script>
+    <script>
+        $("#name").on("keypress", function (e) {
+            toastr.success(e.which, "KeyPress");
+        });
+
+        $("#profileImageUrl").on("keyup", function () {
+            $("#profileImage").attr("src", $(this).val());
+        });
+
+        $("#profileImage").on("click", function (e) {
+            toastr.success(e.offsetX + " " + e.offsetY, "Offset");
+        });
+    </script>
+</body>
+</html>

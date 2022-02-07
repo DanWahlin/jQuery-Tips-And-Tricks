@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Classes over Styles</title>
+    <style type="text/css">
+        .panel {
+           background-color: #efefef;
+           color: black;
+           border: 1px solid black;
+           margin-top: 10px;
+        }
+
+        .hover {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div>Panel 1</div>
+        <div>Panel 2</div>
+        <div>Panel 3</div>
+        <div>Panel 4</div>
+    </div>
+    <script src="Scripts/jquery.js"></script>
+    <script>
+        //$("#container div").css({
+        //    "background-color": "#efefef",
+        //    "color": "black",
+        //    "border": "1px solid black",
+        //    "margin-top": "10px"
+        //}).hover(function () {
+        //    $(this).css("background-color", "yellow");
+        //}, function () {
+        //    $(this).css("background-color", "#efefef");
+        //});
+        $("#container div")
+            .addClass("panel")
+            .hover(function () {
+                $(this).toggleClass("hover");
+            });
+    </script>
+</body>
+</html>

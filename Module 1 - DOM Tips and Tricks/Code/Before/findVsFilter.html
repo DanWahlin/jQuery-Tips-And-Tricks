@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="Scripts/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#showButton").click(function () {
+                var $names = $("#people li");
+                var $output = $("#output");
+                var $pubs = "";
+
+                if ($pubs.length) {
+                    var html = "";
+                    $pubs.each(function () {
+                        html += "<li>" + $(this).text() + "</li>";
+                    });
+                    $output.append(html);
+                }
+                else {
+                    $output.append("<li>No pubs found</li>");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="showButton">Show Pubs</button>
+    <ul id="people">
+        <li class="publisher">Elijah Manor</li>
+        <li class="publisher">Dan Wahlin</li>
+        <li>Aaron Skonnard</li>
+        <li>Fritz Onion</li>
+        <li>Keith Sparkjoy</li>
+    </ul>
+    <h2>Pubs</h2>
+    <ul id="output"></ul>
+</body>
+</html>

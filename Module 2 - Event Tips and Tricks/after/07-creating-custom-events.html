@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="./ext/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>Creating Custom Events</title>
+</head>
+<body>
+    <form class="form-horizontal well">
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label" for="firstName">First Name</label>
+                <div class="controls">
+                    <input id="firstName" type="text" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="lastName">Last Name</label>
+                <div class="controls">
+                    <input id="lastName" type="text" class="input-xlarge">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button class="btn">Cancel</button>
+            </div>
+        </fieldset>
+    </form>
+    <div id="output"></div>
+    <script src="./ext/jquery/jquery.min.js"></script>
+    <script>
+        var personForm = {
+            $button: $("button"),
+            init: function () {
+                this.$button.on("click", this.process.bind(this));
+            },
+            process: function (e) {
+                e.preventDefault();
+                $(document).trigger("personUpdated", [this.scrape()]);
+            },
+            scrape: function () {
+                return {
+                    firstName: $("#firstName").val(),
+                    lastName: $("#lastName").val()
+                };
+            }
+        }.init();
+        var personView = {
+            $element: $("#output"),
+            init: function () {
+                $(document).on("personUpdated", this.render.bind(this));
+            },
+            render: function (e, person) {
+                $("<code />", {
+                    html: person.firstName + " " + person.lastName
+                }).appendTo(this.$element);
+            }
+        }.init();
+    </script>
+</body>
+</html>

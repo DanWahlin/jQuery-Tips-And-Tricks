@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="content-wrapper">
+        <br />
+        <h2>Customers:</h2>
+        <table style="width: 600px">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: customers">
+                <tr>
+                    <td data-bind="text: ID"></td>
+                    <td><input type="text" data-bind="value: FirstName" /></td>
+                    <td><input type="text" data-bind="value: LastName" /></td>
+                    <td>
+                        <a href="#" data-bind="click: $root.deleteCustomer">Delete</a>
+                        <a href="#" data-bind="click: $root.updateCustomer">Update</a>
+                        <a href="#" data-bind="click: $root.getCustomerOrders">View Orders</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <a href="#" data-bind="click: $root.insertCustomer">New Customer</a>
+        <br />
+        <h2>Orders</h2>
+        <table style="width: 400px">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: orders">
+                <tr>
+                    <td data-bind="text: ID"></td>
+                    <td data-bind="text: ProductTitle"></td>
+                    <td data-bind="text: Total"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <span style="font-size:15pt;font-weight:bold;" data-bind="text: status"></span>
+        <br />
+        <br />
+    </div>
+
+    <script src="Scripts/jquery.min.js"></script>
+    <script src="Scripts/knockout.js"></script>
+    <script src="Scripts/customersViewModel.js"></script>
+    <script src="Scripts/customersPageKnockout.js"></script>
+    <script src="Scripts/dataService.js"></script>
+    <script>
+        $(document).ready(function () {
+            customersPage.init();
+        });
+    </script>
+</body>
+</html>

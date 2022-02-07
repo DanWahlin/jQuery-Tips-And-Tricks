@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="./ext/toastr/toastr.min.css" rel="stylesheet" />
+<meta charset=utf-8 />
+<title>.on Instead of .bind()</title>
+</head>
+<body>
+	<ul id="members">
+		<li><a href="detail.html?id=1">Detail 1</a></li>
+		<li><a href="detail.html?id=2">Detail 2</a></li>
+		<li><a href="detail.html?id=3">Detail 3</a></li>
+		<li><a href="detail.html?id=4">Detail 4</a></li>
+		<li><a href="detail.html?id=5">Detail 5</a></li>
+	</ul>
+    <button>Add Item</button>
+    <script src="./ext/jquery/jquery.min.js"></script>
+    <script src="./ext/toastr/toastr.min.js"></script>
+    <script>
+        $("#members").find("li a").click("click", function (e) {
+            e.preventDefault();
+            toastr.success($(this).text(), "Click");
+        });
+        $("button").bind("click", function () {
+            $("<li><a href='#'>Detail 6</a></li>").appendTo("#members");
+        });
+    </script>
+</body>
+</html>

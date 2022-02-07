@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Accessing HTML5 Data-* Attributes</title>
+</head>
+<body>
+    <h1>Accessing HTML5 data-* Attributes</h1>
+    <div id="pet" 
+        data-type="dog" 
+        data-name="Baron" 
+        data-age="2" 
+        data-trained="true"
+        data-object='{"type": "dog", "name": "Baron", "age": 2, "trained": true}'>
+        Baron the Dog
+    </div>
+    <h2>attr() Output</h2>
+    <div id="attrOutput"></div>
+    <br />
+    <h2>data() Output</h2>
+    <div id="dataOutput"></div>
+    <script src="Scripts/jquery.min.js"></script>
+    <script>
+        var $pet = $("#pet");
+        var $attrOutput = $("#attrOutput");
+        var $dataOutput = $("#dataOutput");
+
+        var attrName = $pet.attr("data-name");
+        var dataName = $pet.data("name");
+
+        var attrAge = $pet.attr("data-age");
+        var dataAge = $pet.data("age");
+
+        var attrAgePlus1 = attrAge + 1;
+        var dataAgePlus1 = dataAge + 1;
+
+        var attrTrained = $pet.attr("data-trained");
+        var dataTrained = $pet.data("trained");
+
+        var attrObject = $pet.attr("data-object");
+        var dataObject = $pet.data("object");
+
+        $pet.attr("data-name", "Fido");
+        alert("data() name: " + $pet.data("name") + " attr() name: " + $pet.attr("data-name"));
+       
+        //http://www.davidtong.me/data-vs-attr-pick-the-right-method/
+        //The jQuery data object and an HTML5 data-* attribute aren't connected. 
+        //Updating the jQuery data object won't update the custom attribute.
+
+        $attrOutput.html("Name: " + attrName + "<br />Age: " + attrAge + " = " + typeof(attrName) +
+                         "<br />Age + 1: " + attrAgePlus1 +
+                         "<br />Trained: " + attrTrained + " = " + typeof(attrTrained) +
+                         "<br />Full Object: " + attrObject);
+        $dataOutput.html("Name: " + dataName + "<br />Age: " + dataAge + " = " + typeof(dataAge) + 
+                         "<br />Age + 1: " + dataAgePlus1 +
+                         "<br />Trained: " + dataTrained + " = " + typeof(dataTrained) +
+                         "<br />Full Object: " + dataObject);
+    </script>
+</body>
+</html>

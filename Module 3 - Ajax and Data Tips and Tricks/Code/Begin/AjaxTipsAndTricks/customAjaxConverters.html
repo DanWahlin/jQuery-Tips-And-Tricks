@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Ajax Converters</title>
+    <script src="Scripts/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#makeCall').click(function () {
+                $.ajax({
+                    url: "/api/custom",
+                    success: function (data) {
+                        var custsHtml = "";
+                        for (var i = 0; i < data.d.length; i++) {
+                            var cust = data.d[i];
+                            custsHtml += cust.FirstName + " " + cust.LastName + "<br />";
+                        }
+                        $("#output").html(custsHtml);
+                    },
+                    error: function (jqXHR, statusText, err) {
+                        alert("Error occurred: " + err);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="makeCall">Click to Use Custom Ajax Converter</button>
+    <div id="output"></div>
+</body>
+</html>
+

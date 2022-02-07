@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="Scripts/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#emailContainer").attr("title", "Emails");
+            $("#emailContainer").click(function () {
+                alert("Clicked container");
+            });
+
+            updateEmailPanels();
+            updateOrdersPanels();
+
+        });
+
+        function updateEmailPanels() {
+            $("#emailContainer div.panel").each(function (i) {
+                $(this).html("Panel " + i);
+            });
+        }
+
+        function updateOrdersPanels() {
+            $("#ordersContainer div.panel").each(function (i) {
+                $(this).html("Panel " + i);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="emailContainer">
+        <div class="panel">
+            
+        </div>
+        <div class="panel">
+            
+        </div>
+    </div>
+    <div id="ordersContainer">
+        <div class="panel">
+            
+        </div>
+        <div class="panel">
+            
+        </div>
+    </div>
+
+</body>
+</html>

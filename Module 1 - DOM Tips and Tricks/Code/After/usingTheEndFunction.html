@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Using the End Function</title>
+    <script src="Scripts/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            var cust = {
+                name: "John Doe",
+                city: "Chandler"
+            };
+            $('<div class="cust"><span /></div>')
+                .find("span")
+                    .attr("title", cust.name)
+                    .data(cust)
+                    .html(cust.name)
+                .end()
+                .appendTo("#container");
+
+        });
+    </script>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
+

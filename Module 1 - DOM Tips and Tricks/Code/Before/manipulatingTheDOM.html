@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Manipulating the DOM</title>
+    <style>
+        table {
+            width: 600px;
+        }
+        th {
+            text-align: left;
+        }
+        #container {
+            height: 500px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <button id="loadCustomersButton">Load Customers</button>
+    Time (millis): <span id="diff"></span>
+    <div id="container">
+        <table id="customersTable">
+            <tr>
+                <td>ID</td>
+                <th>Name</th>
+                <th>Address</th>            
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>New Customer?</th>
+            </tr>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="Scripts/jquery.js"></script>
+    <script>
+        $("#loadCustomersButton").click(function () {
+            $("#customersTable tbody").html("");
+            var start = new Date();
+            var custs = getCustomers();
+            for (var i = 0; i < custs.length; i++) {
+                var cust = custs[i];
+                var tr = $("#customersTable tbody").append("<tr></tr>");
+                tr.append("<td>" + cust.id + "</td>");
+                tr.append("<td>" + cust.name + "</td>");
+                tr.append("<td>" + cust.address + "</td>");
+                tr.append("<td>" + cust.city + "</td>");
+                tr.append("<td>" + cust.state + "</td>");
+                tr.append("<td>" + cust.zip + "</td>");
+                tr.append("<td>" + cust.newCustomer + "</td>");
+            }
+            var diff = new Date().getTime() - start.getTime();
+            $("#diff").html(diff);
+        });
+
+        function getCustomers() {
+            var custs = [];
+            for (var i = 0; i < 4000; i++) {
+                var cust = {
+                    id: i,
+                    name: "John Doe",
+                    address: "12345 Any St.",
+                    city: "Chandler",
+                    state: "Arizona",
+                    zip: 85225,
+                    newCustomer: true
+                };
+                custs.push(cust);
+            }
+            return custs;
+        }
+    </script>
+</body>
+</html>
